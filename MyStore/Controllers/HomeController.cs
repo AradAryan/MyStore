@@ -1,37 +1,32 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using MyStore.Models;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System;
+using Application;
 using System.Linq;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 
 namespace MyStore.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        IProduct Product;
+        public HomeController(IProduct product)
         {
-            _logger = logger;
+            Product = product;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var result = Product.GetProducts();
+            return Json(result);
         }
 
-        public IActionResult Privacy()
+        public IActionResult SaveProduct()
         {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var result = Product.SaveProduct();
+            return Json(result);
         }
     }
 }
