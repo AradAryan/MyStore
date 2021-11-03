@@ -11,9 +11,11 @@ namespace Application
     public class Product : IProduct
     {
         IStoreDbContext DbContext;
-        public Product(IStoreDbContext storeDbContext)
+        IMapper Mapper;
+        public Product(IStoreDbContext storeDbContext, IMapper mapper)
         {
             DbContext = storeDbContext;
+            Mapper = mapper;
         }
 
         public IList<Products> GetProducts()
@@ -24,6 +26,8 @@ namespace Application
 
         public bool SaveProduct()
         {
+            //Mapper.Map<Products>(products);
+
             DbContext.Products.Add(new Products { Name = new Random().Next(1, 10000).ToString(), Price = new Random().Next(1, 10000) });
             return DbContext.SaveChanges() == 1;
         }

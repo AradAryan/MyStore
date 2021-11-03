@@ -1,5 +1,4 @@
 using Application;
-using Domain.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -26,9 +25,10 @@ namespace MyStore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<StoreDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefConnection")));
+            services.AddDbContext<Domain.EntityFramework.StoreDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefConnection")));
             services.AddScoped<IProduct, Product>();
-            services.AddScoped<IStoreDbContext, StoreDbContext>();
+            services.AddScoped<Domain.EntityFramework.IStoreDbContext, Domain.EntityFramework.StoreDbContext>();
+            services.AddScoped<Application.IMapper, Application.Mapper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
