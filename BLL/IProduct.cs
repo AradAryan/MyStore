@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.ViewModels;
 using Domain.EntityFarmeworkModels;
 
 namespace Application
@@ -10,7 +11,7 @@ namespace Application
     public interface IProduct
     {
         IList<Products> GetProducts();
-        bool SaveProduct();
+        bool SaveProduct(ProductVM product);
 
     }
 }

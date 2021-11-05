@@ -6,27 +6,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
+using Application.ViewModels;
 
 namespace MyStore.Controllers
 {
     public class HomeController : BaseController
     {
-        IProduct Product;
-        public HomeController(IProduct product)
+        public HomeController()
         {
-            Product = product;
         }
 
-        public IActionResult Index()
+        public OkResult Index()
         {
-            var result = Product.GetProducts();
-            return Json(result);
+            return Ok();
         }
 
-        public IActionResult SaveProduct()
-        {
-            var result = Product.SaveProduct();
-            return Json(result);
-        }
     }
 }

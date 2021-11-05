@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Application
 {
-    public class Mapper : IMapper
+    public class Mapper<TDestination> : IMapper<TDestination> where TDestination : class, new()
     {
-        internal TDestination Map<TSource, TDestination>(TSource source, TDestination destination) where TSource : class, new() where TDestination : class, new()
+        internal TDestination Map<TSource>(TSource source, TDestination destination) where TSource : class, new()
         {
             if (source != null && destination != null)
             {
@@ -38,7 +38,7 @@ namespace Application
             return null;
         }
 
-        public TDestination Map<TDestination>(object source) where TDestination : class, new()
+        public TDestination Map(object source)
         {
             var destination = Activator.CreateInstance<TDestination>();
             Map(source, destination);
@@ -46,7 +46,7 @@ namespace Application
             return destination;
         }
 
-        public IEnumerable<TDestination> MapList<TDestination>(IEnumerable<object> sources) where TDestination : class, new()
+        public IEnumerable<TDestination> MapList(IEnumerable<object> sources)
         {
             _ = (List<TDestination>)Activator.CreateInstance(typeof(List<TDestination>));
 

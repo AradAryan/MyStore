@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Application
 {
-    public interface IMapper
+    public interface IMapper<TDestination> where TDestination : class, new()
     {
-        TDestination Map<TDestination>(object source) where TDestination : class, new();
-        IEnumerable<TDestination> MapList<TDestination>(IEnumerable<object> sources) where TDestination : class, new();
+        TDestination Map(object source);
+        IEnumerable<TDestination> MapList(IEnumerable<object> sources);
     }
 }

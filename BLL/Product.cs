@@ -1,4 +1,5 @@
-﻿using Domain.EntityFarmeworkModels;
+﻿using Application.ViewModels;
+using Domain.EntityFarmeworkModels;
 using Domain.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ namespace Application
 {
     public class Product : IProduct
     {
-        IStoreDbContext DbContext;
-        IMapper Mapper;
-        public Product(IStoreDbContext storeDbContext, IMapper mapper)
+        private readonly IStoreDbContext DbContext;
+        private readonly IMapper<Products> Mapper;
+        public Product(IStoreDbContext storeDbContext, IMapper<Products> mapper)
         {
             DbContext = storeDbContext;
             Mapper = mapper;
@@ -24,11 +25,9 @@ namespace Application
             return result;
         }
 
-        public bool SaveProduct()
+        public bool SaveProduct(ProductVM product)
         {
-            //Mapper.Map<Products>(products);
-
-            DbContext.Products.Add(new Products { Name = new Random().Next(1, 10000).ToString(), Price = new Random().Next(1, 10000) });
+            DbContext.Products.Add(Mapper.Map(product));
             return DbContext.SaveChanges() == 1;
         }
     }

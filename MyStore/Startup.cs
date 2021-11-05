@@ -1,4 +1,5 @@
 using Application;
+using Domain.EntityFarmeworkModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -26,9 +27,9 @@ namespace MyStore
         {
             services.AddControllers();
             services.AddDbContext<Domain.EntityFramework.StoreDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefConnection")));
-            services.AddScoped<IProduct, Product>();
             services.AddScoped<Domain.EntityFramework.IStoreDbContext, Domain.EntityFramework.StoreDbContext>();
-            services.AddScoped<Application.IMapper, Application.Mapper>();
+            services.AddScoped<IProduct, Product>();
+            services.AddScoped<IMapper<Products>, Mapper<Products>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +54,7 @@ namespace MyStore
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "api/{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
