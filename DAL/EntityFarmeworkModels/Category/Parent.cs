@@ -8,12 +8,13 @@ using Domain.EntityFarmeworkModels.BaseModel;
 
 namespace Domain.EntityFarmeworkModels
 {
-    public class Menus : BaseEntity
+    public class Parent : BaseEntity
     {
-        [MaxLength(100)]
-        public string Link { get; set; }
-
         [MaxLength(50)]
-        public string Title { get; set; }
+        public string Name { get; set; }
+
+
+        public IList<Child> Children { get; set; }
     }
 }
+

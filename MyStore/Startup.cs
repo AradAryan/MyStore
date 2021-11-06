@@ -28,8 +28,8 @@ namespace MyStore
             services.AddControllers();
             services.AddDbContext<Domain.EntityFramework.StoreDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefConnection")));
             services.AddScoped<Domain.EntityFramework.IStoreDbContext, Domain.EntityFramework.StoreDbContext>();
-            services.AddScoped<IProduct, Product>();
-            services.AddScoped<IMapper<Products>, Mapper<Products>>();
+            services.AddScoped<IProduct, Application.Product>();
+            services.AddScoped<IMapper<Domain.EntityFarmeworkModels.Product>, Mapper<Domain.EntityFarmeworkModels.Product>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

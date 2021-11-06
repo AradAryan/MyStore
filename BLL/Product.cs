@@ -12,14 +12,14 @@ namespace Application
     public class Product : IProduct
     {
         private readonly IStoreDbContext DbContext;
-        private readonly IMapper<Products> Mapper;
-        public Product(IStoreDbContext storeDbContext, IMapper<Products> mapper)
+        private readonly IMapper<Domain.EntityFarmeworkModels.Product> Mapper;
+        public Product(IStoreDbContext storeDbContext, IMapper<Domain.EntityFarmeworkModels.Product> mapper)
         {
             DbContext = storeDbContext;
             Mapper = mapper;
         }
 
-        public IList<Products> GetProducts()
+        public IList<Domain.EntityFarmeworkModels.Product> GetProducts()
         {
             var result = DbContext.Products.ToList();
             return result;

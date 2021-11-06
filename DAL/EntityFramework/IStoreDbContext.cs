@@ -11,7 +11,7 @@ namespace Domain.EntityFramework
     public interface IStoreDbContext
     {
         int SaveChanges();
-        DbSet<Products> Products { get; set; }
+        DbSet<Product> Products { get; set; }
         string DbPath { get; }
     }
 }

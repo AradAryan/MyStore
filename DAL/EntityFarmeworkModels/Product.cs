@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.EntityFarmeworkModels
 {
-    public class Products : BaseEntity
+    public class Product : BaseEntity
     {
         [MaxLength(10)]
         public string Name { get; set; }
@@ -28,9 +28,9 @@ namespace Domain.EntityFarmeworkModels
 
 
         [ForeignKey("ChildId")]
-        public Children Children { get; set; }
+        public Child Children { get; set; }
 
         [ForeignKey("ParentId")]
-        public Parents Parents { get; set; }
+        public Parent Parents { get; set; }
     }
 }

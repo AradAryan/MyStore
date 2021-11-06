@@ -20,10 +20,10 @@ namespace Domain.EntityFramework
 
         #region [ Fields ]
 
-        public DbSet<Menus> Menus { get; set; }
-        public DbSet<Parents> Parents { get; set; }
-        public DbSet<Children> Children { get; set; }
-        public DbSet<Products> Products { get; set; }
+        public DbSet<Menu> Menus { get; set; }
+        public DbSet<Parent> Parents { get; set; }
+        public DbSet<Child> Children { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         public string DbPath { get; }
 
@@ -31,12 +31,12 @@ namespace Domain.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Children>()
+            modelBuilder.Entity<Child>()
                 .HasOne(p => p.Parents)
                 .WithMany(c => c.Children)
                 .HasForeignKey(c => c.ParentId);
 
-            modelBuilder.Entity<Children>()
+            modelBuilder.Entity<Child>()
                 .Navigation(b => b.Parents)
                 .UsePropertyAccessMode(PropertyAccessMode.Property);
 

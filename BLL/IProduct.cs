@@ -10,7 +10,7 @@ namespace Application
 {
     public interface IProduct
     {
-        IList<Products> GetProducts();
+        IList<Domain.EntityFarmeworkModels.Product> GetProducts();
         bool SaveProduct(ProductVM product);
 
     }
