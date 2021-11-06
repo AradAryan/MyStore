@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Application.ViewModels;
 using Domain.EntityFarmeworkModels;
 
-namespace Application
+namespace Application.Services
 {
     public interface IProduct
     {
