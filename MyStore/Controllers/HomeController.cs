@@ -14,6 +14,7 @@ namespace MyStore.Controllers
     {
         public HomeController()
         {
+
         }
 
         public OkResult Index()

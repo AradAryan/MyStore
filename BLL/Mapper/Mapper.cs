@@ -28,7 +28,7 @@ namespace Application
                         }
                         catch
                         {
-
+                            continue;
                         }
                     }
                 }
